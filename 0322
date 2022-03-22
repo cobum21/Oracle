@@ -1,0 +1,16 @@
+외래키 : 다른 테이블의 키를 참조 
+SELECT NAME,SALEPRICE
+FROM CUSTOMER,OREDERS
+where orders.custid = CUSTOMER.CUSTID
+order by CUSTOMER.NAME;
+
+SELECT NAME,avg(SALEPRICE), count(*)
+FROM CUSTOMER,ORDERS
+where orders.custid = CUSTOMER.CUSTID and SALEPRICE >= 10000
+group by CUSTOMER.NAME;
+
+select name, bookname 
+from book, customer, orders 
+where book.bookid = orders.bookid 
+and customer.custid = orders.custid;
+
