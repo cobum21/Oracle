@@ -1,0 +1,148 @@
+DDL -- create,alter,drop
+DML -- SELECT,
+DCL -- 
+ROUND -- 소수점 구하는 함수 
+
+
+select * from book;
+
+select bookname from book 
+union 
+select name from CUSTOMER;
+--타입과 갯수를 맞춰줘야한다 
+
+
+--exists 
+SELECT name,address
+FROM customer cs
+WHERE EXISTS(select * FROM orders od 
+             WHERE cs.custid=od.custid);
+             
+INSERT INTO book(bookname,publisher,price)
+       VALUES('스포츠세계','대한미디어',10000);
+
+DELETE form book
+WHERE publisher='삼성당';
+
+UPDATE book
+SET publisher='대한출판사'
+WHERE publisher='대한미디어';
+
+
+CREATE TABLE Bookcompany(
+name VARCHAR(20),
+address VARCHAR(20),
+begin DATE,
+PRIMARY key(name)
+CREATE TABLE Bookcompany(
+name VARCHAR(20),
+address VARCHAR(20),
+begin DATE,
+PRIMARY key(name)
+);
+UPDATE book
+SET publisher='대한출판사'
+WHERE publisher='대한미디어';
+DELETE book
+WHERE publisher='삼성당';
+DELETE FROM book
+WHERE publisher='삼성당';
+SELECT * FROM BOOK;
+SELECT name,address
+FROM customer cs
+WHERE EXISTS(select * FROM orders od 
+             WHERE cs.custid=od.custid);
+SELECT name,address
+FROM customer cs
+WHERE NOT EXISTS(select * FROM orders od 
+             WHERE cs.custid=od.custid);
+SELECT name,address
+FROM customer cs
+WHERE EXISTS(select* FROM orders od 
+             WHERE cs.custid=od.custid);
+select bookname from book 
+union 
+select name from CUSTOMER;
+SELECT name,avg(SALEPRICE), count(*)
+FROM CUSTOMER,ORDERS
+where orders.custid = CUSTOMER.CUSTID and SALEPRICE >= 10000
+group by CUSTOMER.NAME;
+
+select name, bookname 
+from book, customer, orders 
+where book.bookid = orders.bookid 
+and customer.custid = orders.custid;
+
+
+select name, saleprice 
+FROM CUSTOMER left join orders on orders.custid = CUSTOMER.CUSTID;
+
+
+select bookname,saleprice 
+FROM book left join orders on book.bookid = orders.bookid;
+
+
+SELECT bookname FROM book where PRICE in (select max(price) FORM book);
+SELECT max(price) FROM book;
+
+SELECT name FROM CUSTOMER WHERE CUSTID NOT IN (SELECT custid FROM orders);
+SELECT custid From orders;
+
+SElECT b1.bookname
+FROM Book.b1
+WHERE b1.price>(SELECT avg(b2price)
+      FROM Book b2 
+      WHERE b2.puvlisher=b1.publisher);
+
+SELECT bookname
+FROM book
+WHERE price >= (SELECT AVG(price) FROM book); 
+SELECT AVG(price) FROM book;
+
+
+
+SELECT orderid, custid, sale price
+FROM orders o1
+    WHERE price >= (SELECT AVG(o2.salprice) 
+    FROM ORDERS o2 
+    WHERE o2.CUSTID = o1.CUSTID);
+
+SELECT AVG(price) FROM book;
+SELECT Customer.name, Book.bookname
+FROM Customer, Orders, Book
+WHERE Customer.custid =Orders.custid
+AND Orders.bookid =Book.bookid;
+SELECT NAME,avg(SALEPRICE), count(*)
+FROM CUSTOMER,ORDERS
+where orders.custid = CUSTOMER.CUSTID and SALEPRICE >= 10000
+group by CUSTOMER.NAME;
+select bookname,saleprice 
+FROM book left join orders on book.bookid = orders.bookid;
+select name, bookname 
+from book, customer, orders 
+where book.bookid = orders.bookid 
+and customer.custid = orders.custid;
+);
+
+ALTER table bookcompany 
+ADD webaddress  varcahar(30);
+
+
+INSERT INTO BOOKCOMPANY 
+VALUES ('한빛아카데미', '서울시 마포구', '1993-01-01', 'http://hanbit.co.kr');
+
+SELECT ROUND (4.875,1)
+FROM dual;
+
+SELECT * from orders;
+
+SELECT saleprice, to_char(orderdate,'dy')
+FROM orders;
+
+-- 요일별 주문수량
+SELECT to_char(ordate,'day')날짜,
+COUNT(*) 수량
+FROM orders group by to_char(orderdate,'dy');
+
+
+
